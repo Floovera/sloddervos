@@ -1,17 +1,19 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
-    private Item item;
+    private ArrayList<Item> items;
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
+        items = new ArrayList<Item>();
     }
 
-    public void setItem(Item item){
-        this.item = item;
+    public void addItem(Item item){
+        items.add(item);
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -24,8 +26,13 @@ public class Room {
         return exits.get(direction);
     }
 
-    public String getLongDescription() {
-        return "You are " + description + "\n" + "which contains item: " + item.getItemDescription() + "\n" + getExitString();
+    public String toString() {
+
+        String output = "You are " + description + "\n" + "which contains item(s): \n ";
+        for(Item item : items){
+            output = output + item.toString() + "\n";}
+        output = output + "\n" + getExitString();
+        return output;
     }
 
     public String getExitString() {

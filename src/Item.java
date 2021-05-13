@@ -24,7 +24,7 @@ public class Item {
         this.weight = weight;
     }
 
-    public String getItemDescription(){
+    public String toString(){
         return name + " with weight of " + weight + " kg";
     }
 }

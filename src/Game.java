@@ -60,7 +60,9 @@ public class Game
 
         currentRoom = outside;  // start game outside
 
-        outside.setItem(new Item("star",2.0));
+        outside.addItem(new Item("chips",1.2));
+        outside.addItem(new Item("cookies",2.10));
+
     }
 
     /**
@@ -206,11 +208,11 @@ public class Game
     }
 
     private void printLocationInfo() {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.toString());
         System.out.println();
     }
 
     private void look() {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.toString());
     }
 }
