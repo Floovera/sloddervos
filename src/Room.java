@@ -3,10 +3,15 @@ import java.util.HashMap;
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
+    private Item item;
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
+    }
+
+    public void setItem(Item item){
+        this.item = item;
     }
 
     public void setExit(String direction, Room neighbor) {
