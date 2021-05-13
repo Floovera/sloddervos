@@ -12,6 +12,10 @@ public class Room {
         items = new ArrayList<Item>();
     }
 
+    public Room getExit(String direction) {
+        return exits.get(direction);
+    }
+
     public void addItem(Item item){
         items.add(item);
     }
@@ -21,15 +25,6 @@ public class Room {
     }
 
     public String getDescription() { return description; }
-
-    public Room getExit(String direction) {
-        return exits.get(direction);
-    }
-
-    public String toString() {
-
-        return "You are " + description + "\n" + getItemsString() + getExitString();
-    }
 
     public String getExitString() {
         String returnString = "Exit(s): ";
@@ -48,5 +43,10 @@ public class Room {
             return returnString;
         }
         return "";
+    }
+
+    public String toString() {
+
+        return "You are " + description + "\n" + getItemsString() + getExitString();
     }
 }
