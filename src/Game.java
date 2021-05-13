@@ -35,6 +35,7 @@ public class Game
     private void createRooms()
     {
         Room outside, theater, pub, lab, office;
+        Item chips, cookies;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -60,8 +61,13 @@ public class Game
 
         currentRoom = outside;  // start game outside
 
-        outside.addItem(new Item("chips",1.2));
-        outside.addItem(new Item("cookies",2.10));
+        // create the items
+        chips = new Item("chips",1.2);
+        cookies = new Item("cookies",2.10);
+
+        // add items to room
+        outside.addItem(chips);
+        outside.addItem(cookies);
 
     }
 
