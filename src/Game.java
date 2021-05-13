@@ -59,6 +59,8 @@ public class Game
         office.setExit("east", lab);
 
         currentRoom = outside;  // start game outside
+
+        outside.setItem(new Item("star",2.0));
     }
 
     /**

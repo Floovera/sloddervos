@@ -23,4 +23,8 @@ public class Item {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    public String getItemDescription(){
+        return name + " with weight of " + weight + " kg";
+    }
 }
