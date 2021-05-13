@@ -45,8 +45,8 @@ public class Game
         office = new Room("in the computing admin office");
 
         // create the items
-        chips = new Item("Thai sweet chili","chips",1.0);
-        cookies = new Item("Dinokoeken","cookies",1.20);
+        chips = new Item("chips","Ketchup chips",1.0);
+        cookies = new Item("koeken","Dinokoeken",1.20);
 
         // create a player
 
@@ -61,7 +61,6 @@ public class Game
         lab.setExit("north" ,outside);
         lab.setExit("east", office);
         office.setExit("east", lab);
-
 
         // add items to room
         outside.addItem(chips);
@@ -101,7 +100,8 @@ public class Game
     }
 
     private void printLocationInfo() {
-        System.out.println(player.getName() + player.getCurrentRoom().toString());
+        System.out.println(player.getCurrentRoom().getLongDescription());
+        System.out.println(player.getLongDescription());
         System.out.println();
     }
 
@@ -125,6 +125,12 @@ public class Game
         }
         else if (commandWord.equals("go")) {
             goRoom(command);
+        }
+        else if (commandWord.equals("take")) {
+            take(command);
+        }
+        else if (commandWord.equals("drop")) {
+            drop(command);
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
@@ -152,7 +158,7 @@ public class Game
     }
 
     private void look() {
-        System.out.println(player.getName() + player.getCurrentRoom().toString());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     /** 
@@ -199,6 +205,34 @@ public class Game
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
+    }
+
+    private void take(Command command) {
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to take...
+            System.out.println("Take what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        if (player.take(itemName)) {
+            printLocationInfo();
+        } else {
+            System.out.println("There is no item here with the name " + itemName);
+        }
+    }
+
+    private void drop(Command command) {
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to drop...
+            System.out.println("Drop what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        if (player.drop(itemName)) {
+            printLocationInfo();
+        } else {
+            System.out.println("There is no item here with the name " + itemName);
+        }
     }
 
 }

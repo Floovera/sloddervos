@@ -36,7 +36,7 @@ public class Room {
 
     public String getItemsString() {
         if (!items.isEmpty()) {
-            String returnString = "Item(s):\n";
+            String returnString = "Item(s) in the room:\n";
             for (Item item : items) {
                 returnString += "   " + item.toString() + "\n";
             }
@@ -45,8 +45,25 @@ public class Room {
         return "";
     }
 
-    public String toString() {
+    public boolean hasItem(String name) {
+        for (Item item : items) {
+            if (item.getName().equals(name)) return true;
+        }
+        return false;
+    }
 
-        return " is " + description + "\n" + getItemsString() + getExitString();
+    public Item getItem(String name) {
+        for (Item item : items) {
+            if (item.getName().equals(name)) {
+                if (items.remove(item)) {
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public String getLongDescription() {
+        return "You are " + description + "\n" + getItemsString() + getExitString();
     }
 }
