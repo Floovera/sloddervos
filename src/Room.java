@@ -28,18 +28,25 @@ public class Room {
 
     public String toString() {
 
-        String output = "You are " + description + "\n" + "which contains item(s): \n ";
-        for(Item item : items){
-            output = output + item.toString() + "\n";}
-        output = output + "\n" + getExitString();
-        return output;
+        return "You are " + description + "\n" + getItemsString() + getExitString();
     }
 
     public String getExitString() {
-        String returnString = "Exits: ";
+        String returnString = "Exit(s): ";
         for (String direction : exits.keySet()) {
             returnString += " " + direction;
         }
         return returnString;
+    }
+
+    public String getItemsString() {
+        if (!items.isEmpty()) {
+            String returnString = "Item(s):\n";
+            for (Item item : items) {
+                returnString += "   " + item.toString() + "\n";
+            }
+            return returnString;
+        }
+        return "";
     }
 }
