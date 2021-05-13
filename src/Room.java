@@ -9,11 +9,8 @@ public class Room {
         exits = new HashMap<String, Room>();
     }
 
-    public void setExits(Room north, Room east, Room south, Room west) {
-        if (north != null) exits.put("north", north);
-        if (east != null) exits.put("east", east);
-        if (south != null) exits.put("south", south);
-        if (west != null) exits.put("west", west);
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction, neighbor);
     }
 
     public String getDescription() { return description; }
