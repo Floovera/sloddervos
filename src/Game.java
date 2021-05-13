@@ -45,8 +45,8 @@ public class Game
         office = new Room("in the computing admin office");
 
         // create the items
-        chips = new Item("chips",1.2);
-        cookies = new Item("cookies",2.10);
+        chips = new Item("Thai sweet chili","chips",1.0);
+        cookies = new Item("Dinokoeken","cookies",1.20);
 
         // create a player
 
