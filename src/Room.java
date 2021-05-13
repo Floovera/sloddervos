@@ -47,6 +47,6 @@ public class Room {
 
     public String toString() {
 
-        return "You are " + description + "\n" + getItemsString() + getExitString();
+        return " is " + description + "\n" + getItemsString() + getExitString();
     }
 }

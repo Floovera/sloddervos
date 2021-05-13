@@ -18,7 +18,7 @@
 public class Game
 {
     private Parser parser;
-    private Room currentRoom;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
@@ -48,6 +48,10 @@ public class Game
         chips = new Item("chips",1.2);
         cookies = new Item("cookies",2.10);
 
+        // create a player
+
+        player = new Player("Floo",outside);
+
         // initialise room exits
         outside.setExit("east", theater);
         outside.setExit("south" ,lab);
@@ -58,7 +62,6 @@ public class Game
         lab.setExit("east", office);
         office.setExit("east", lab);
 
-        currentRoom = outside;  // start game outside
 
         // add items to room
         outside.addItem(chips);
@@ -98,7 +101,7 @@ public class Game
     }
 
     private void printLocationInfo() {
-        System.out.println(currentRoom.toString());
+        System.out.println(player.getName() + player.getCurrentRoom().toString());
         System.out.println();
     }
 
@@ -142,14 +145,14 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
+        System.out.println(player.getName() + " is lost and alone, and wanders ");
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:   " + parser.showCommands());
     }
 
     private void look() {
-        System.out.println(currentRoom.toString());
+        System.out.println(player.getName() + player.getCurrentRoom().toString());
     }
 
     /** 
@@ -167,12 +170,12 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if(nextRoom==null) {
             System.out.println("There is no door!");
         }else {
-            currentRoom = nextRoom;
+            player.setCurrentRoom(nextRoom);
             printLocationInfo();
         }
     }
@@ -197,8 +200,5 @@ public class Game
         Game game = new Game();
         game.play();
     }
-
-
-
 
 }
