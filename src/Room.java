@@ -19,6 +19,10 @@ public class Room {
         return exits.get(direction);
     }
 
+    public String getLongDescription() {
+        return "You are " + description + ".\n" + getExitString();
+    }
+
     public String getExitString() {
         String returnString = "Exits: ";
         for (String direction : exits.keySet()) {
