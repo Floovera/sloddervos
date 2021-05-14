@@ -27,7 +27,7 @@ public class Room {
     public String getDescription() { return description; }
 
     public String getExitString() {
-        String returnString = "Exit(s): ";
+        String returnString = "Uitgangen: ";
         for (String direction : exits.keySet()) {
             returnString += " " + direction;
         }
@@ -36,7 +36,7 @@ public class Room {
 
     public String getItemsString() {
         if (!items.isEmpty()) {
-            String returnString = "Item(s) in the room:\n";
+            String returnString = "Kledingstukken in de kamer: \n";
             for (Item item : items) {
                 returnString += "   " + item.toString() + "\n";
             }
@@ -64,6 +64,6 @@ public class Room {
     }
 
     public String getLongDescription() {
-        return "You are " + description + "\n" + getItemsString() + getExitString();
+        return "Je bent " + description + "\n" + getItemsString() + getExitString();
     }
 }

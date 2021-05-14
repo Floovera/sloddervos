@@ -4,10 +4,9 @@ public class Item {
     private String description;
     private double weight;
 
-    public Item(String name, String description, double weight) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.weight = weight;
     }
 
     public String getName() {
@@ -26,15 +25,7 @@ public class Item {
         this.description = description;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
     public String toString(){
-        return name + "(" + description + ")" + " with weight of " + weight + " kg";
+        return name + "(" + description + ")";
     }
 }

@@ -55,13 +55,13 @@ public class Player {
 
     public String getLongDescription() {
         if (!items.isEmpty()) {
-            String returnString = "Item(s) in the bag:\n";
+            String returnString = "Opgepikte kledingstukken:\n";
             for (Item item : items) {
                 returnString += "   " + item.toString() + "\n";
             }
             return returnString;
         }
-        return "No items in the bag.";
+        return "Nog geen kledingsstukken opgepikt.";
     }
 
 }

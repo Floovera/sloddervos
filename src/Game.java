@@ -49,11 +49,11 @@ public class Game
         badkamer= new Room("in de badkamer");
 
         // create the items
-        kousen = new Item("kousen","glitterkousjes",0.5);
-        jas = new Item("jas","regenjas",2.0);
-        pantoffels = new Item("pantoffels","pantoffels maatje 38",3.0);
-        pyjama = new Item("pyjama","japonneke",1.8);
-        hemdje = new Item("hemdje","witte blouse",1.5);
+        kousen = new Item("kousen","glitterkousjes");
+        jas = new Item("jas","regenjas");
+        pantoffels = new Item("pantoffels","pantoffels maatje 38");
+        pyjama = new Item("pyjama","japonneke");
+        hemdje = new Item("hemdje","witte blouse");
 
 
         // create a player
@@ -61,22 +61,22 @@ public class Game
         player = new Player("Floo",inkom);
 
         // initialise room exits
-        inkom.setExit("east", bureau);
-        inkom.setExit("south" ,living);
+        inkom.setExit("oost", bureau);
+        inkom.setExit("zuid" ,living);
         inkom.setExit("west" ,garage);
-        inkom.setExit("up",nachthal);
+        inkom.setExit("boven",nachthal);
         bureau.setExit("west", inkom);
-        garage.setExit("east", inkom);
-        living.setExit("north" ,inkom);
-        living.setExit("east", keuken);
-        keuken.setExit("east", living);
-        nachthal.setExit("down",inkom);
-        nachthal.setExit("east",logeerkamer);
-        nachthal.setExit("south",badkamer);
+        garage.setExit("oost", inkom);
+        living.setExit("noord" ,inkom);
+        living.setExit("oost", keuken);
+        keuken.setExit("oost", living);
+        nachthal.setExit("beneden",inkom);
+        nachthal.setExit("oost",logeerkamer);
+        nachthal.setExit("zuid",badkamer);
         nachthal.setExit("west",slaapkamer);
         logeerkamer.setExit("west", nachthal);
-        slaapkamer.setExit("east", nachthal);
-        badkamer.setExit("north" ,nachthal);
+        slaapkamer.setExit("oost", nachthal);
+        badkamer.setExit("noord" ,nachthal);
 
 
         // add items to room
