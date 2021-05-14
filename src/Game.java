@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Player player;
+    private Count count;
         
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        count = new Count();
     }
 
     /**
@@ -34,7 +36,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room inkom, bureau, garage, living, keuken, nachthal, slaapkamer, logeerkamer, badkamer;
+        Room inkom, bureau, garage, living, keuken, tuin,nachthal, slaapkamer, logeerkamer, badkamer;
         Item kousen,jas,pantoffels,pyjama,hemdje;
       
         // create the rooms
@@ -43,6 +45,7 @@ public class Game
         garage = new Room("in de garage");
         living = new Room("in de living");
         keuken = new Room("in de keuken");
+        tuin = new Room("in de tuin");
         nachthal = new Room("boven in de nachthal");
         logeerkamer = new Room("in de logeerkamer");
         slaapkamer = new Room("in de slaapkamer");
@@ -69,6 +72,7 @@ public class Game
         garage.setExit("oost", inkom);
         living.setExit("noord" ,inkom);
         living.setExit("oost", keuken);
+        living.setExit("zuid" ,tuin);
         keuken.setExit("oost", living);
         nachthal.setExit("beneden",inkom);
         nachthal.setExit("oost",logeerkamer);
@@ -77,6 +81,7 @@ public class Game
         logeerkamer.setExit("west", nachthal);
         slaapkamer.setExit("oost", nachthal);
         badkamer.setExit("noord" ,nachthal);
+        tuin.setExit("noord",living);
 
 
         // add items to room
@@ -144,6 +149,9 @@ public class Game
             case LOOK:
                 look();
                 break;
+            case CHECK:
+                check();
+                break;
             case TAKE:
                 take(command);
                 break;
@@ -178,6 +186,10 @@ public class Game
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
+    private void check(){
+        System.out.println(count.toString());
+    }
+
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
@@ -200,6 +212,7 @@ public class Game
         }else {
             player.setCurrentRoom(nextRoom);
             printLocationInfo();
+            count.raise();
         }
     }
 
