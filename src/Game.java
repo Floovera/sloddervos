@@ -1,9 +1,9 @@
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
- * 
+ *  Deze klasse is de main class van het Sloddervossen -spel.
+ *  In dit spel is het de bedoeling dat de speler zo snel mogelijk
+ *  alle kledingstukken die hij liet rondslingeren in het huis
+ *  verzameld en dropt in zijn slaapkamer.
+ *
  *  To play this game, create an instance of this class and call the "play"
  *  method.
  * 
@@ -11,8 +11,8 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2011.07.31
+ * @author  Floo Veraghtert
+ * @version 2021.05.14
  */
 
 public class Game
@@ -34,37 +34,57 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
-        Item chips, cookies;
+        Room inkom, bureau, garage, living, keuken, nachthal, slaapkamer, logeerkamer, badkamer;
+        Item kousen,jas,pantoffels,pyjama,hemdje;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        inkom = new Room("in de inkomhal");
+        bureau = new Room("in het bureau");
+        garage = new Room("in de garage");
+        living = new Room("in de living");
+        keuken = new Room("in de keuken");
+        nachthal = new Room("boven in de nachthal");
+        logeerkamer = new Room("in de logeerkamer");
+        slaapkamer = new Room("in de slaapkamer");
+        badkamer= new Room("in de badkamer");
 
         // create the items
-        chips = new Item("chips","Ketchup chips",1.0);
-        cookies = new Item("koeken","Dinokoeken",1.20);
+        kousen = new Item("kousen","glitterkousjes",0.5);
+        jas = new Item("jas","regenjas",2.0);
+        pantoffels = new Item("pantoffels","pantoffels maatje 38",3.0);
+        pyjama = new Item("pyjama","japonneke",1.8);
+        hemdje = new Item("hemdje","witte blouse",1.5);
+
 
         // create a player
 
-        player = new Player("Floo",outside);
+        player = new Player("Floo",inkom);
 
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south" ,lab);
-        outside.setExit("west" ,pub);
-        theater.setExit("west", outside);
-        pub.setExit("east", outside);
-        lab.setExit("north" ,outside);
-        lab.setExit("east", office);
-        office.setExit("east", lab);
+        inkom.setExit("east", bureau);
+        inkom.setExit("south" ,living);
+        inkom.setExit("west" ,garage);
+        inkom.setExit("up",nachthal);
+        bureau.setExit("west", inkom);
+        garage.setExit("east", inkom);
+        living.setExit("north" ,inkom);
+        living.setExit("east", keuken);
+        keuken.setExit("east", living);
+        nachthal.setExit("down",inkom);
+        nachthal.setExit("east",logeerkamer);
+        nachthal.setExit("south",badkamer);
+        nachthal.setExit("west",slaapkamer);
+        logeerkamer.setExit("west", nachthal);
+        slaapkamer.setExit("east", nachthal);
+        badkamer.setExit("north" ,nachthal);
+
 
         // add items to room
-        outside.addItem(chips);
-        outside.addItem(cookies);
+        bureau.addItem(pantoffels);
+        living.addItem(kousen);
+        keuken.addItem(jas);
+        logeerkamer.addItem(hemdje);
+        badkamer.addItem(pyjama);
 
     }
 
