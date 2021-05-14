@@ -103,7 +103,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Bedankt om te spelen! Tot ziens.");
     }
 
     /**
@@ -112,9 +112,9 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP.toString() + "' if you need help.");
+        System.out.println("Welkom in het Sloddervossen -spel!");
+        System.out.println("In dit spel is het de bedoeling dat je zo snel mogelijk de kledingstukken die je liet rondslingeren verzameld in de slaapkamer.");
+        System.out.println("Wanneer je hulp kan gebruiken, typ dan " + CommandWord.HELP.toString() + " en dan helpen we je verder.");
         System.out.println();
         printLocationInfo();
     }
@@ -136,7 +136,7 @@ public class Game
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("I don't know what you mean...");
+                System.out.println("Mmm ben niet zeker wat je hier mee wil bedoelen ...");
                 break;
             case HELP:
                 printHelp();
@@ -170,10 +170,8 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println(player.getName() + " is lost and alone, and wanders ");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:   " + parser.showCommands());
+        System.out.println(player.getName() + " lijkt verloren.");
+        System.out.println("Gebruik volgende commands om verder te spelen:   " + parser.showCommands());
     }
 
     private void look() {
@@ -188,7 +186,7 @@ public class Game
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
+            System.out.println("Ga naar waar?");
             return;
         }
 
@@ -198,7 +196,7 @@ public class Game
         Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if(nextRoom==null) {
-            System.out.println("There is no door!");
+            System.out.println("Oei er is geen deur ...");
         }else {
             player.setCurrentRoom(nextRoom);
             printLocationInfo();
@@ -213,7 +211,7 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("Stop met spelen?");
             return false;
         }
         else {
@@ -229,28 +227,28 @@ public class Game
     private void take(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to take...
-            System.out.println("Take what?");
+            System.out.println("Neem wat?");
             return;
         }
         String itemName = command.getSecondWord();
         if (player.take(itemName)) {
             printLocationInfo();
         } else {
-            System.out.println("There is no item here with the name " + itemName);
+            System.out.println("Oei, "+ itemName + " vind ik niet terug in deze kamer.");
         }
     }
 
     private void drop(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to drop...
-            System.out.println("Drop what?");
+            System.out.println("Drop wat?");
             return;
         }
         String itemName = command.getSecondWord();
         if (player.drop(itemName)) {
             printLocationInfo();
         } else {
-            System.out.println("There is no item here with the name " + itemName);
+            System.out.println("Oei, het lijkt alsof je je" + itemName + " vergeten bent ...");
         }
     }
 
