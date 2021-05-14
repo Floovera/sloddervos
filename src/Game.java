@@ -36,7 +36,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room inkom, bureau, garage, living, keuken, tuin,nachthal, slaapkamer, logeerkamer, badkamer;
+        Room inkom, bureau, garage, living, keuken, tuin ,nachthal, slaapkamer, logeerkamer, badkamer;
         Item kousen,jas,pantoffels,pyjama,hemdje;
       
         // create the rooms
