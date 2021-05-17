@@ -19,7 +19,9 @@ public class Game
 {
     private Parser parser;
     private Player player;
-    private Count count;
+    private Count roomcount;
+    private Count itemcount;
+    private Room goal;
         
     /**
      * Create the game and initialise its internal map.
@@ -28,7 +30,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        count = new Count();
+        roomcount = new Count();
     }
 
     /**
@@ -187,7 +189,7 @@ public class Game
     }
 
     private void check(){
-        System.out.println(count.toString());
+        System.out.println(roomcount.toString());
     }
 
     /** 
@@ -212,7 +214,7 @@ public class Game
         }else {
             player.setCurrentRoom(nextRoom);
             printLocationInfo();
-            count.raise();
+            roomcount.raise();
         }
     }
 
