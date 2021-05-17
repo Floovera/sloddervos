@@ -182,6 +182,7 @@ public class Game
     {
         System.out.println(player.getName() + " lijkt verloren.");
         System.out.println("Gebruik volgende commands om verder te spelen:   " + parser.showCommands());
+        this.checkEnd();
     }
 
     private void look() {
@@ -264,6 +265,15 @@ public class Game
             printLocationInfo();
         } else {
             System.out.println("Oei, het lijkt alsof je je" + itemName + " vergeten bent ...");
+        }
+    }
+
+    private void checkEnd(){
+        String omschrijvingkamer;
+        omschrijvingkamer = player.getCurrentRoom().getDescription();
+
+        if(omschrijvingkamer.equals("in de slaapkamer") && player.getCurrentRoom().hasItem("kousen")){
+            System.out.println("Het is gelukt!");
         }
     }
 
