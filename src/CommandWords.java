@@ -42,14 +42,6 @@ public class CommandWords
         }
     }
 
-    public String showAll() {
-        String show = "";
-        for (String command : validCommands.keySet()) {
-            show += command + " ";
-        }
-        return show;
-    }
-
     public CommandWord getCommand(String aString) {
         if (validCommands.containsKey(aString)) {
             return validCommands.get(aString);

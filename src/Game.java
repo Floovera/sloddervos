@@ -19,9 +19,6 @@ public class Game
 {
     private Parser parser;
     private Player player;
-    private Count roomcount;
-    private Count itemcount;
-    private Room goal;
         
     /**
      * Create the game and initialise its internal map.
@@ -30,7 +27,6 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        roomcount = new Count();
     }
 
     /**
@@ -108,7 +104,7 @@ public class Game
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
-            finished = processCommand(command);
+            finished = command.execute(player);
         }
         System.out.println("Bedankt om te spelen! Tot ziens.");
     }
@@ -123,149 +119,14 @@ public class Game
         System.out.println("In dit spel is het de bedoeling dat je zo snel mogelijk de kledingstukken die je liet rondslingeren verzameld in de slaapkamer.");
         System.out.println("Wanneer je hulp kan gebruiken, typ dan " + CommandWord.HELP.toString() + " en dan helpen we je verder.");
         System.out.println();
-        printLocationInfo();
+        player.getLongDescription();
     }
 
-    private void printLocationInfo() {
-        System.out.println(player.getCurrentRoom().getLongDescription());
-        System.out.println(player.getLongDescription());
-        System.out.println();
-    }
 
-    /**
-     * Given a command, process (that is: execute) the command.
-     * @param command The command to be processed.
-     * @return true If the command ends the game, false otherwise.
-     */
-    private boolean processCommand(Command command) {
-        boolean wantToQuit = false;
-        CommandWord commandWord = command.getCommandWord();
-
-        switch (commandWord) {
-            case UNKNOWN:
-                System.out.println("Mmm ben niet zeker wat je hier mee wil bedoelen ...");
-                break;
-            case HELP:
-                printHelp();
-                break;
-            case LOOK:
-                look();
-                break;
-            case CHECK:
-                check();
-                break;
-            case TAKE:
-                take(command);
-                break;
-            case DROP:
-                drop(command);
-                break;
-            case GO:
-                goRoom(command);
-                break;
-            case QUIT:
-                wantToQuit = quit(command);
-                break;
-        }
-
-        return wantToQuit;
-    }
-
-    // implementations of user commands:
-
-    /**
-     * Print out some help information.
-     * Here we print some stupid, cryptic message and a list of the 
-     * command words.
-     */
-    private void printHelp() 
-    {
-        System.out.println(player.getName() + " lijkt verloren.");
-        System.out.println("Gebruik volgende commands om verder te spelen:   " + parser.showCommands());
-        this.checkEnd();
-    }
-
-    private void look() {
-        System.out.println(player.getCurrentRoom().getLongDescription());
-    }
-
-    private void check(){
-        System.out.println(roomcount.toString());
-    }
-
-    /** 
-     * Try to go in one direction. If there is an exit, enter
-     * the new room, otherwise print an error message.
-     */
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Ga naar waar?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
-
-        if(nextRoom==null) {
-            System.out.println("Oei er is geen deur ...");
-        }else {
-            player.setCurrentRoom(nextRoom);
-            printLocationInfo();
-            roomcount.raise();
-        }
-    }
-
-    /** 
-     * "Quit" was entered. Check the rest of the command to see
-     * whether we really quit the game.
-     * @return true, if this command quits the game, false otherwise.
-     */
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Stop met spelen?");
-            return false;
-        }
-        else {
-            return true;  // signal that we want to quit
-        }
-    }
 
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
-    }
-
-    private void take(Command command) {
-        if (!command.hasSecondWord()) {
-            // if there is no second word, we don't know what to take...
-            System.out.println("Neem wat?");
-            return;
-        }
-        String itemName = command.getSecondWord();
-        if (player.take(itemName)) {
-            printLocationInfo();
-        } else {
-            System.out.println("Oei, "+ itemName + " vind ik niet terug in deze kamer.");
-        }
-    }
-
-    private void drop(Command command) {
-        if (!command.hasSecondWord()) {
-            // if there is no second word, we don't know what to drop...
-            System.out.println("Drop wat?");
-            return;
-        }
-        String itemName = command.getSecondWord();
-        if (player.drop(itemName)) {
-            printLocationInfo();
-        } else {
-            System.out.println("Oei, het lijkt alsof je je" + itemName + " vergeten bent ...");
-        }
     }
 
     private void checkEnd(){
