@@ -2,7 +2,8 @@
  *  Deze klasse is de main class van het Sloddervossen -spel.
  *  In dit spel is het de bedoeling dat de speler zo snel mogelijk
  *  alle kledingstukken die hij liet rondslingeren in het huis
- *  verzameld en dropt in zijn slaapkamer.
+ *  verzameld en dropt in zijn slaapkamer. Aan de hand van het commando
+ *  check kan je nagaan of je alles hebt verzameld in je slaapkamer.
  *
  *  To play this game, create an instance of this class and call the "play"
  *  method.
@@ -122,20 +123,9 @@ public class Game
         player.printLocationInfo();
     }
 
-
-
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
-    }
-
-    private void checkEnd(){
-        String omschrijvingkamer;
-        omschrijvingkamer = player.getCurrentRoom().getDescription();
-
-        if(omschrijvingkamer.equals("in de slaapkamer") && player.getCurrentRoom().hasItem("kousen")){
-            System.out.println("Het is gelukt!");
-        }
     }
 
 }

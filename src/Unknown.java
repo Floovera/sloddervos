@@ -6,7 +6,7 @@ public class Unknown extends Command{
 
     @Override
     public boolean execute(Player player) {
-        System.out.println("Mmm ben niet zeker wat je hier mee wil bedoelen ...");
+        System.out.println("Typ help om te kijken welke commando's je kan gebruiken.");
         return false;
     }
 }
