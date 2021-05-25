@@ -13,7 +13,7 @@ public class Drop extends Command{
         }
         String itemName = getSecondWord();
         if (player.drop(itemName)) {
-            player.getLongDescription();
+            player.printLocationInfo();
         } else {
             System.out.println("Oei, het lijkt alsof je je" + itemName + " vergeten bent ...");
         }

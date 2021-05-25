@@ -26,7 +26,7 @@ public class Go extends Command {
             System.out.println("There is no door!");
         } else {
             player.setCurrentRoom(nextRoom);
-            player.getLongDescription();
+            player.printLocationInfo();
         }
         return false;
     }

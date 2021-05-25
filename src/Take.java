@@ -13,7 +13,7 @@ public class Take extends Command{
             }
             String itemName = getSecondWord();
             if (player.take(itemName)) {
-                player.getLongDescription();
+                player.printLocationInfo();
             } else {
                 System.out.println("Oei, "+ itemName + " vind ik niet terug in deze kamer.");
             }

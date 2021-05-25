@@ -64,9 +64,9 @@ public class Player {
         return "Nog geen kledingsstukken opgepikt.";
     }
 
-    private void printLocationInfo() {
-        System.out.println(getCurrentRoom().getLongDescription());
-        System.out.println(getLongDescription());
+    public void printLocationInfo() {
+        System.out.println(this.getCurrentRoom().getLongDescription());
+        System.out.println(this.getLongDescription());
         System.out.println();
     }
 

@@ -119,7 +119,7 @@ public class Game
         System.out.println("In dit spel is het de bedoeling dat je zo snel mogelijk de kledingstukken die je liet rondslingeren verzameld in de slaapkamer.");
         System.out.println("Wanneer je hulp kan gebruiken, typ dan " + CommandWord.HELP.toString() + " en dan helpen we je verder.");
         System.out.println();
-        player.getLongDescription();
+        player.printLocationInfo();
     }
 
 
