@@ -17,7 +17,7 @@
  * @version 2011.07.31
  */
 
-public class Command
+abstract public class Command
 {
     private CommandWord commandWord;
     private String secondWord;
@@ -66,5 +66,7 @@ public class Command
     {
         return (secondWord != null);
     }
+
+    public abstract boolean execute(Player player);
 }
 
