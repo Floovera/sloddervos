@@ -17,7 +17,7 @@
  * @version 2011.07.31
  */
 
-abstract public class Command
+public abstract class Command
 {
     private CommandWord commandWord;
     private String secondWord;
