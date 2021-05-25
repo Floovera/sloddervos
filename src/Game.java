@@ -71,8 +71,8 @@ public class Game
         garage.setExit("oost", inkom);
         living.setExit("noord" ,inkom);
         living.setExit("oost", keuken);
-        living.setExit("zuid" ,tuin);
-        keuken.setExit("oost", living);
+        living.setExit("west" ,tuin);
+        keuken.setExit("west", living);
         nachthal.setExit("beneden",inkom);
         nachthal.setExit("oost",logeerkamer);
         nachthal.setExit("zuid",badkamer);
@@ -80,7 +80,7 @@ public class Game
         logeerkamer.setExit("west", nachthal);
         slaapkamer.setExit("oost", nachthal);
         badkamer.setExit("noord" ,nachthal);
-        tuin.setExit("noord",living);
+        tuin.setExit("oost",living);
 
 
         // add items to room
