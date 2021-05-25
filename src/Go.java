@@ -15,7 +15,7 @@ public class Go extends Command {
     {
         if (!hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
+            System.out.println("Ga naar?");
             return false;
         }
 
@@ -23,8 +23,9 @@ public class Go extends Command {
         // Try to leave current room.
         Room nextRoom = player.getCurrentRoom().getExit(direction);
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Oei ... er is geen deur.");
         } else {
+            player.setPreviousRoom(player.getCurrentRoom());
             player.setCurrentRoom(nextRoom);
             player.printLocationInfo();
         }

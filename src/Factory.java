@@ -15,6 +15,8 @@ public class Factory {
                 return new Take(command, secondWord);
             case CHECK:
                 return new Check(command, secondWord);
+            case BACK:
+                return new Back(command, secondWord);
             case UNKNOWN:
             default:
                 return new Unknown(command, secondWord);

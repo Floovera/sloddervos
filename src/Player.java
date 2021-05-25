@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Player {
 
     private String name;
     private Room currentRoom;
+    private Room previousRoom;
     private ArrayList<Item> items;
 
     public Player(String name, Room currentRoom) {
@@ -22,6 +24,14 @@ public class Player {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public void setPreviousRoom(Room previousRoom){
+        this.previousRoom = previousRoom;
+    }
+
+    public Room getPreviousRoom(){
+        return previousRoom;
     }
 
     private boolean hasItem(String name) {
