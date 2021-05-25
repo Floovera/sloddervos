@@ -17,6 +17,9 @@ public class Back extends Command{
 
         if (previousRoom == null) {
             System.out.println("Je kan niet terug. Dit is  het begin.");
+        }
+        else if (previousRoom == player.getCurrentRoom()) {
+            System.out.println("Je bent al terug waar je daarnet was.");
         } else {
             player.setCurrentRoom(previousRoom);
             player.printLocationInfo();
